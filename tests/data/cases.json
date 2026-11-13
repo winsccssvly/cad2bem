@@ -1,0 +1,27 @@
+{
+  "about": "Conversions of the real models (the OC3 spar and the OC4 columns and the test bodies of tests/data): the CAD file, the mode and the convert options. The models test converts each case and requires the state it gives, the closure state (closed, default ok), a volume within volume_rel of the CAD volume (when the file has solids) and an interior surface when one is asked for. Flat panels lose up to a few per cent of the volume on narrow columns (chord error).",
+  "cases": [
+    {"name": "column_ho", "file": "column.step", "mode": "ho",
+     "options": ["--patch-size", "6", "--cut-waterline", "--symmetry", "xz_and_yz", "--interior"], "state": "ok", "volume_rel": 1e-9},
+    {"name": "column_lo_free", "file": "column.step", "mode": "lo-free",
+     "options": ["--panel-size", "2", "--cut-waterline", "--symmetry", "xz_and_yz", "--interior"], "state": "ok", "volume_rel": 0.03},
+    {"name": "column_lo_str", "file": "column.step", "mode": "lo-str",
+     "options": ["--patch-size", "6", "--panel-size", "2", "--cut-waterline", "--symmetry", "xz_and_yz", "--interior"], "state": "warn", "closed": "warn", "volume_rel": 0.03},
+    {"name": "moonpool_ho", "file": "moonpool.step", "mode": "ho",
+     "options": ["--patch-size", "4", "--cut-waterline", "--symmetry", "xz_and_yz", "--interior"], "state": "ok", "volume_rel": 1e-9},
+    {"name": "wigley_ho", "file": "iges_wigley.igs", "mode": "ho",
+     "options": ["--patch-size", "10", "--cut-waterline", "--symmetry", "xz", "--interior", "--remove-sheets", "rules"], "state": "warn"},
+    {"name": "oc3_ho", "file": "oc3.step", "mode": "ho",
+     "options": ["--patch-size", "8", "--cut-waterline", "--symmetry", "xz_and_yz", "--interior"], "state": "ok", "volume_rel": 1e-6},
+    {"name": "oc3_lo_free", "file": "oc3.step", "mode": "lo-free",
+     "options": ["--panel-size", "2", "--cut-waterline", "--symmetry", "xz_and_yz", "--interior"], "state": "ok", "volume_rel": 0.03},
+    {"name": "oc3_lo_str", "file": "oc3.step", "mode": "lo-str",
+     "options": ["--patch-size", "8", "--panel-size", "1", "--cut-waterline", "--symmetry", "xz_and_yz", "--interior"], "state": "ok", "volume_rel": 0.03},
+    {"name": "oc4_only_column_ho", "file": "oc4_only_column.step", "mode": "ho",
+     "options": ["--patch-size", "6", "--cut-waterline", "--interior"], "state": "ok", "volume_rel": 1e-3},
+    {"name": "oc4_only_column_lo_free", "file": "oc4_only_column.step", "mode": "lo-free",
+     "options": ["--panel-size", "1.5", "--cut-waterline", "--symmetry", "xz", "--interior"], "state": "ok", "volume_rel": 0.03},
+    {"name": "oc4_only_column_lo_str", "file": "oc4_only_column.step", "mode": "lo-str",
+     "options": ["--patch-size", "6", "--panel-size", "1", "--cut-waterline", "--interior"], "state": "ok", "volume_rel": 0.01}
+  ]
+}

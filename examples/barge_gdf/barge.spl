@@ -1,0 +1,17 @@
+box barge -- spline control (NU NV, KU KV, outer and inner Gauss orders per patch)
+16 6
+3 3
+3 3
+4 4
+6 6
+3 3
+3 3
+4 4
+16 6
+3 3
+3 3
+4 4
+6 16
+3 3
+3 3
+4 4

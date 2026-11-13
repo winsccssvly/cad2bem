@@ -1,0 +1,24 @@
+cad2bem
+Copyright 2026 Sanghun Lee
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version (see LICENSE). Unless a file states otherwise, every file of this
+repository is covered by that licence.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+cad2bem does not include third-party source code, apart from the short excerpts of
+Gmsh source in the patches of scripts/build_static_cad.ps1 (GPL-2.0-or-later, like
+Gmsh). It uses the Gmsh C API: the
+default build loads a separately installed Gmsh 4.15 library (GPL-2.0-or-later)
+at run time, and the integrated build links Gmsh and OpenCASCADE Technology
+(LGPL-2.1 with the OCCT exception) into the executable, with Gmsh's quadrilateral
+recombination using the perfect matching of LEMON (Boost Software License 1.0)
+instead of Blossom IV, which the integrated build leaves out. It is built from Rust
+crates under permissive licences (MIT, Apache-2.0 and others). The executable
+carries no font: the window uses the fonts of the operating system. See
+THIRD_PARTY_NOTICES.md.

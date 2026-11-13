@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The cad2bem logo, on the 48 x 48 grid of the Windows app icon guidelines: a floating column whose smooth CAD surface
+     above the water becomes flat panels below it, in water. One blue palette, light from the top left. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 48 48">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#b9dcf7"/>
+      <stop offset="0.4" stop-color="#8cc2ee"/>
+      <stop offset="1" stop-color="#4a8fcf"/>
+    </linearGradient>
+    <linearGradient id="cap" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4faff"/>
+      <stop offset="1" stop-color="#cde5f8"/>
+    </linearGradient>
+  <linearGradient id="water" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9fe3ef"/>
+      <stop offset="1" stop-color="#3fb4cf"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="24" cy="23.2" rx="21.5" ry="6.2" fill="url(#water)"/>
+  <path d="M 13.0 7.5 L 13.0 21.0 A 11.0 3.6 0 0 0 35.0 21.0 L 35.0 7.5 Z" fill="url(#body)"/>
+  <ellipse cx="24.0" cy="7.5" rx="11.0" ry="3.6" fill="url(#cap)" stroke="#4a8fcf" stroke-width="0.7"/>
+  <polygon points="13.00,21.00 14.47,22.80 14.47,29.80 13.00,28.00" fill="#5fa8ea" stroke="#ffffff" stroke-opacity="0.6" stroke-width="0.55" stroke-linejoin="round"/>
+  <polygon points="13.00,28.00 14.47,29.80 14.47,36.80 13.00,35.00" fill="#5fa8ea" stroke="#ffffff" stroke-opacity="0.6" stroke-width="0.55" stroke-linejoin="round"/>
+  <polygon points="13.00,35.00 14.47,36.80 14.47,43.80 13.00,42.00" fill="#5fa8ea" stroke="#ffffff" stroke-opacity="0.6" stroke-width="0.55" stroke-linejoin="round"/>
+  <polygon points="14.47,22.80 18.50,24.12 18.50,31.12 14.47,29.80" fill="#4294de" stroke="#ffffff" stroke-opacity="0.6" stroke-width="0.55" stroke-linejoin="round"/>
+  <polygon points="14.47,29.80 18.50,31.12 18.50,38.12 14.47,36.80" fill="#4294de" stroke="#ffffff" stroke-opacity="0.6" stroke-width="0.55" stroke-linejoin="round"/>
+  <polygon points="14.47,36.80 18.50,38.12 18.50,45.12 14.47,43.80" fill="#4294de" stroke="#ffffff" stroke-opacity="0.6" stroke-width="0.55" stroke-linejoin="round"/>
+  <polygon points="18.50,24.12 24.00,24.60 24.00,31.60 18.50,31.12" fill="#2f80cc" stroke="#ffffff" stroke-opacity="0.6" stroke-width="0.55" stroke-linejoin="round"/>
+  <polygon points="18.50,31.12 24.00,31.60 24.00,38.60 18.50,38.12" fill="#2f80cc" stroke="#ffffff" stroke-opacity="0.6" stroke-width="0.55" stroke-linejoin="round"/>
+  <polygon points="18.50,38.12 24.00,38.60 24.00,45.60 18.50,45.12" fill="#2f80cc" stroke="#ffffff" stroke-opacity="0.6" stroke-width="0.55" stroke-linejoin="round"/>
+  <polygon points="24.00,24.60 29.50,24.12 29.50,31.12 24.00,31.60" fill="#246db8" stroke="#ffffff" stroke-opacity="0.6" stroke-width="0.55" stroke-linejoin="round"/>
+  <polygon points="24.00,31.60 29.50,31.12 29.50,38.12 24.00,38.60" fill="#246db8" stroke="#ffffff" stroke-opacity="0.6" stroke-width="0.55" stroke-linejoin="round"/>
+  <polygon points="24.00,38.60 29.50,38.12 29.50,45.12 24.00,45.60" fill="#246db8" stroke="#ffffff" stroke-opacity="0.6" stroke-width="0.55" stroke-linejoin="round"/>
+  <polygon points="29.50,24.12 33.53,22.80 33.53,29.80 29.50,31.12" fill="#1c5aa0" stroke="#ffffff" stroke-opacity="0.6" stroke-width="0.55" stroke-linejoin="round"/>
+  <polygon points="29.50,31.12 33.53,29.80 33.53,36.80 29.50,38.12" fill="#1c5aa0" stroke="#ffffff" stroke-opacity="0.6" stroke-width="0.55" stroke-linejoin="round"/>
+  <polygon points="29.50,38.12 33.53,36.80 33.53,43.80 29.50,45.12" fill="#1c5aa0" stroke="#ffffff" stroke-opacity="0.6" stroke-width="0.55" stroke-linejoin="round"/>
+  <polygon points="33.53,22.80 35.00,21.00 35.00,28.00 33.53,29.80" fill="#164887" stroke="#ffffff" stroke-opacity="0.6" stroke-width="0.55" stroke-linejoin="round"/>
+  <polygon points="33.53,29.80 35.00,28.00 35.00,35.00 33.53,36.80" fill="#164887" stroke="#ffffff" stroke-opacity="0.6" stroke-width="0.55" stroke-linejoin="round"/>
+  <polygon points="33.53,36.80 35.00,35.00 35.00,42.00 33.53,43.80" fill="#164887" stroke="#ffffff" stroke-opacity="0.6" stroke-width="0.55" stroke-linejoin="round"/>
+  <polyline points="13.00,21.00 14.47,22.80 18.50,24.12 24.00,24.60 29.50,24.12 33.53,22.80 35.00,21.00" fill="none" stroke="#0f3566" stroke-opacity="0.35" stroke-width="1.2" stroke-linejoin="round"/>
+  <path d="M 2.5 23.2 A 21.5 6.2 0 0 0 45.5 23.2 L 35 23.2 A 11 3.6 0 0 1 13 23.2 Z" fill="#3fb4cf" fill-opacity="0.55"/>
+</svg>

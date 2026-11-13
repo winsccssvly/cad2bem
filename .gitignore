@@ -1,0 +1,8 @@
+# Outputs of conversions and scripts
+out/
+# Machine-specific settings and a maintainer's own notes (CLAUDE.md is shared)
+CLAUDE.local.md
+# Editor settings
+.vscode/
+dist/
+/target/

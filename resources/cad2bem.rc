@@ -1,0 +1,3 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// The executable's icon on Windows (Explorer, the taskbar); build.rs compiles this with rc.exe.
+1 ICON "cad2bem.ico"
