@@ -1,0 +1,21 @@
+name: Feature
+description: Something cad2bem should do that it does not do yet.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What is needed and why
+      description: The model or workflow it is for, and what you do today instead.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: How it could work (an option, a GUI setting, an output field). Say if it changes the command line or the results.
+  - type: textarea
+    id: done
+    attributes:
+      label: Done when
+      description: How to tell it works (a model that converts, a check that passes).

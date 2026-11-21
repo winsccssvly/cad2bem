@@ -136,6 +136,10 @@ that reverses one of these should say so here, with the new reason.
 - **Fast Mesh needs no Gmsh.** Its bodies (cylinders, a moonpool, spheres, a barge) are built from their
   dimensions, as panels or as exact rational spline patches. *Why:* simple bodies need no CAD file and convert
   instantly.
+- **Changes arrive by pull request.** `main` is protected: a change is a branch and a squash-merged pull request
+  whose `ci` check passed; the work is in issues labelled by component ([components.md](components.md)). *Why:*
+  several people (and review agents) can work on separate components at once, each change is reviewed against the
+  contracts it touches, and `main` stays one reviewed step per commit.
 - **The conversion tests run in CI on the static build.** A second workflow builds the static Gmsh/OpenCASCADE SDK
   (cached by the hash of its build inputs) and runs every ignored test when code, tests or the build change.
   *Why:* a change that moves results is caught on its pull request, not on one maintainer's machine; the SDK hour is

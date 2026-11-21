@@ -8,7 +8,7 @@ only on a face's geometry (samples, overlaps, mirror distances, display meshes),
 change redoes the preparation without sampling or meshing the unchanged faces again. It also holds the last
 prepared model: a quick request that adds one cut cuts only that model and returns a provisional view, and
 the GUI asks for the exact view (the preparation from the start, as a conversion runs it) right after.
-Why the design is as it is: [decisions.md](decisions.md).
+Why the design is as it is: [decisions.md](decisions.md). The components a change or a review stays in, with their contracts and tests: [components.md](components.md).
 
 ## 1. Pipeline
 

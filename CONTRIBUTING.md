@@ -7,6 +7,27 @@ ships with: it carries corrections to Gmsh (see [docs/development/static-cad.md]
 that a separately installed Gmsh SDK lacks, so a test there checks what users run. Build the static SDK once
 with `scripts/build_static_cad.ps1`. `target/`, `out/` and `dist/` are not tracked.
 
+## How work flows
+
+1. **Issue.** Work starts from an issue: a bug or a feature (the templates ask for what is needed), with one
+   `area:` label for its component ([components](docs/development/components.md)) and, when known, `results`
+   (it will change conversion results) or `interface` (it will change the command line contract). The next
+   work is in the issues; [roadmap.md](docs/development/roadmap.md) keeps the design rules and the state.
+2. **Branch.** One branch per issue from `main`, named `<kind>/<short-name>` (`fix/`, `feat/`, `docs/`,
+   `refactor/`, `ci/`). Keep it to one reviewable step; a large piece of work is several pull requests.
+3. **Pull request.** The template's checklist: the checks below, the issue it closes, the components it
+   touches, the differences from `tests/data/cases.json` when results move, the GUI looked at when the window
+   changes, `CHANGELOG.md` for what users see, `decisions.md` for a design choice. A pull request that
+   crosses components says why.
+4. **Review and merge.** `main` is protected: changes arrive by pull request, and the `ci` check must pass. The
+   conversion check (`conversions`) runs the models on the static build when code changes; a pull request
+   with it red is not merged. Pull requests are squash-merged, so `main` has one commit per pull request,
+   titled like the pull request.
+5. **Release.** By the [release checklist](docs/development/release.md).
+
+Commit messages and pull request titles are short imperative sentences in English ("Split the patch converter
+into paths"); the body says why.
+
 ## Before and after a change
 
 ```powershell

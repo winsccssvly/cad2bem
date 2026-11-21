@@ -2,7 +2,15 @@
 
 User-visible changes by version.
 
-## 0.1.0 (unreleased)
+## Unreleased
+
+### Development
+
+- **Work by pull request.** Contributions go through issues and pull requests with templates; `main` is protected
+  and the conversion tests run in CI on the static build. The components, their contracts and tests are in
+  `docs/development/components.md`; releases follow `docs/development/release.md`.
+
+## 0.1.0 (2026-11-13)
 
 The first release: one Rust executable, GUI and command line, that converts STEP and IGES files to BEM surface
 geometry (GDF, HBG version 3, STL). Licence: GPL-3.0-or-later.

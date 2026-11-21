@@ -19,6 +19,8 @@ paths and a maintainer's own notes go in `CLAUDE.local.md` (not tracked).
 
 ## Rules
 
+- Work flows by issue, branch and pull request ([CONTRIBUTING.md](CONTRIBUTING.md)); `main` is protected. A change
+  names its component and keeps its contracts ([docs/development/components.md](docs/development/components.md)).
 - The command line is a contract with other programs ([docs/reference/cli.md](docs/reference/cli.md)): changing a
   command, an option or the JSON result raises `interface`; an added field keeps it. Patch names
   (`face_<face>`, `face_<face>.<k>`) do not change.
