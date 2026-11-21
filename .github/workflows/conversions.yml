@@ -1,0 +1,79 @@
+name: conversions
+
+# The conversion tests (the ignored ones, among them every case of tests/data/cases.json) on the static
+# Gmsh/OpenCASCADE build, the one the executable ships with. They run when code, tests or the build change;
+# a change to the documentation alone does not start them.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'build/**'
+      - 'build.rs'
+      - 'scripts/**'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      - '.github/workflows/conversions.yml'
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'build/**'
+      - 'build.rs'
+      - 'scripts/**'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      - '.github/workflows/conversions.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: conversions-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  conversions:
+    runs-on: windows-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+      # The static SDK takes about an hour to build; it is kept as long as its inputs do not change (a cache
+      # unused for seven days is dropped by GitHub and built again).
+      - name: Static CAD SDK from the cache
+        id: sdk
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            out/static-cad/install
+            out/native-sources
+          key: static-cad-${{ runner.os }}-${{ hashFiles('scripts/build_static_cad.ps1', 'scripts/native-sources.json', 'scripts/gmsh/**') }}
+      - name: Build the static CAD SDK
+        if: steps.sdk.outputs.cache-hit != 'true'
+        shell: pwsh
+        run: |
+          $vs = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+          scripts/build_static_cad.ps1 -VisualStudioPath $vs -Jobs 4
+          # Only the install and the sources are kept: the build folders are not needed again.
+          Remove-Item -Recurse -Force out/static-cad/occt, out/static-cad/gmsh -ErrorAction SilentlyContinue
+      # Saved at once, so a failing test does not cost the next run the hour of the SDK.
+      - name: Keep the static CAD SDK
+        if: steps.sdk.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            out/static-cad/install
+            out/native-sources
+          key: ${{ steps.sdk.outputs.cache-primary-key }}
+      - name: Lint (static build)
+        shell: pwsh
+        run: |
+          . scripts/static_env.ps1
+          cargo clippy @StaticCargo --all-targets -- -D warnings
+      - name: Conversion tests (static build)
+        shell: pwsh
+        run: |
+          . scripts/static_env.ps1
+          cargo test @StaticCargo -- --include-ignored
