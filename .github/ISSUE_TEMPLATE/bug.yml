@@ -1,0 +1,40 @@
+name: Bug
+description: A conversion, the GUI or the command line does something wrong.
+labels: [bug]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: The output of `cad2bem version`, or the commit.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: What you did
+      description: The command (with every option) or the steps in the GUI, and the CAD file if it can be shared.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: What happened and what you expected
+      description: The message, the JSON result (`--json`) or the checks that failed; a screenshot for the GUI.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Component
+      description: Where the problem seems to be (see docs/development/components.md); leave it if you do not know.
+      options:
+        - Not sure
+        - CAD import and preview
+        - Preparation (cuts, symmetry, sheets, orientation)
+        - Spline patches (ho)
+        - Panels (lo-free, lo-str)
+        - Fast Mesh
+        - Output files and command line
+        - GUI
+        - Build and release

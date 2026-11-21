@@ -40,6 +40,7 @@ tests; no consumer program is needed.
 | GUI and CLI | egui/wgpu window, CAD preview, face picking, untrimmed mesh, conversion, inspection, export; headless `convert` |
 | Gmsh access | One typed C API table for the dynamic SDK and the static link; a safe session; inspection and conversion workers |
 | Static CAD | Pinned Gmsh 4.15.2 and OpenCASCADE 7.8.1 static libraries, the static CRT, import audits ([static CAD backend](static-cad.md)) |
+| Release | 0.1.0: the static executable with its licences and the corresponding source ([release checklist](release.md)) |
 | lo-free | Preparation, solid and winding orientation, meshing, checks, interior, writers |
 | ho | B-spline machinery, every face path, exact rational patches, trim repair, orientation, checks, interior |
 | lo-str | T-junction cuts, linked counts, arc-length grids, hanging-node closure |
@@ -48,13 +49,13 @@ tests; no consumer program is needed.
 
 ## Next
 
-1. **Release build.** Verify every mode in the `static-gmsh` executable on a clean machine (SDK hidden, import
-   table audited) and make it the release artifact, with the notices of the linked libraries.
-2. **Per-face settings.** Remove or keep single faces; a recipe file for the options.
-3. **Mesh options.** Finer panels at the waterline, a minimum count per turn of curved faces, a z shift.
-4. **Quality.** Complex trimmed junctions (pontoons and braces meeting columns) give spline patches with corner-angle and Jacobian
+The work itself is in the GitHub issues, labelled by component; the directions are:
+
+1. **Per-face settings.** Remove or keep single faces; a recipe file for the options.
+2. **Mesh options.** Finer panels at the waterline, a minimum count per turn of curved faces, a z shift.
+3. **Quality.** Complex trimmed junctions (pontoons and braces meeting columns) give spline patches with corner-angle and Jacobian
    warnings and structured panels with hanging nodes; explicit face partitions or better split layouts.
-5. **Speed.** Large models: the inspection result decoded off the UI thread, picking faster than linear, one
+4. **Speed.** Large models: the inspection result decoded off the UI thread, picking faster than linear, one
    display buffer for body and interior.
 
 ## Deferred

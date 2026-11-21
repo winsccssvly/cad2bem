@@ -16,6 +16,8 @@ Start with the [user guide](user-guide.md); the [GUI manual](gui-manual.md) walk
 | Document | Contents |
 |---|---|
 | [development/architecture.md](development/architecture.md) | Pipeline, code map, conventions, tests, pitfalls |
+| [development/components.md](development/components.md) | The components a change stays in: files, contracts, tests |
 | [development/decisions.md](development/decisions.md) | Design decisions and the reason for each |
 | [development/roadmap.md](development/roadmap.md) | Output contract, design rules, state and next work |
 | [development/static-cad.md](development/static-cad.md) | Building and verifying the statically linked Gmsh/OpenCASCADE backend |
+| [development/release.md](development/release.md) | Release checklist: version, build, checks, publishing |
