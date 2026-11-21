@@ -136,3 +136,10 @@ that reverses one of these should say so here, with the new reason.
 - **Fast Mesh needs no Gmsh.** Its bodies (cylinders, a moonpool, spheres, a barge) are built from their
   dimensions, as panels or as exact rational spline patches. *Why:* simple bodies need no CAD file and convert
   instantly.
+- **The conversion tests run in CI on the static build.** A second workflow builds the static Gmsh/OpenCASCADE SDK
+  (cached by the hash of its build inputs) and runs every ignored test when code, tests or the build change.
+  *Why:* a change that moves results is caught on its pull request, not on one maintainer's machine; the SDK hour is
+  paid only when its inputs change, and changes to the documentation alone do not start it.
+- **Large modules are folders by step.** The preparation, the patch converter and the window layout are split by
+  the step or the panel they implement (`engine/prepare/`, `engine/patches/`, `gui/panels/`). *Why:* a change
+  or a review of one step reads a few hundred lines, and two changes to different steps do not meet in one file.

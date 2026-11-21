@@ -85,14 +85,14 @@ STEP/IGES ─▶ prepare ─▶ face sides ─┬─ lo-free ─▶ mesh (Algori
 | `cad/session.rs` | Safe Gmsh session: checked errors, copied and freed buffers, model, OCC, mesh and size-callback calls |
 | `cad/gmsh.rs`, `cad/scene.rs`, `cad/worker.rs` | CAD preview and untrimmed mesh; inspection scenes (face identity apart from display triangles); the inspection worker and the resident view server (`serve`, `Job::start_resident`); `face_key` (a face's geometry fingerprint) and the display mesh cache |
 | `engine/units.rs` | The unit a STEP or IGES file states; the units a request may name |
-| `engine/prepare.rs` | Import, sewing, cuts, symmetry check, overlaps, fragment, sheets, face sides from the solids, the z = 0 section |
+| `engine/prepare/` | `mod.rs` import, sewing and the order of the preparation (`body`), the volume below the water; `overlaps.rs` face samples and duplicate faces; `symmetry.rs` the symmetry check and cut; `sheets.rs` sheet removal; `cuts.rs` face cuts; `waterplane.rs` the z = 0 section; `sides.rs` face sides from the solids |
 | `engine/primitives.rs` | Bodies from their dimensions (Fast Mesh): cylinder, moonpool, sphere, hemisphere, barge as structured panels with the interior surface, and their exact volumes |
 | `engine/primitives_ho.rs` | The same bodies as exact rational spline patches (Fast Mesh, order High) from `exact::ruled` and `exact::revolved`, 45-degree pieces, normals into the body |
 | `engine/winding.rs` | Generalized winding number orientation (solid angles, symmetry images, z mirror, least squares and sign flips) |
 | `engine/lofree.rs` | lo-free panels, body and interior checks and summaries |
 | `engine/panels.rs` | Panel geometry: normals, convexity, warp, volumes, symmetry images (`whole`); HBG, GDF and STL text |
 | `engine/bspline.rs` | B-spline patches (rational included): evaluation, derivatives, fitting, knot insertion, restriction |
-| `engine/patches.rs` | Paths per face, quad fitting with shared edges, remeshing, exact patches in place |
+| `engine/patches/` | `mod.rs` the converter, the order of the paths per face, exact patches in place; `edges.rs` boundaries, smooth loops, sides and shared fitted edges; `paths.rs` direct, native, triangle, single, polygon, bridge, O-grid, ring; `split.rs` the quad mesh, its fitting with shared edges and remeshing |
 | `engine/fanout.rs` | Opt-in (`CAD2BEM_PATCH_WORKERS`): the body faces split among several patch worker processes (`--patch-worker`), merged in one-process order |
 | `engine/surfaces.rs` | Readers of the B-spline surfaces stored in IGES (entity 128) and STEP |
 | `engine/exact.rs` | Rational arcs, ruled patches, surfaces of revolution, the tests for exact pieces |
@@ -101,7 +101,7 @@ STEP/IGES ─▶ prepare ─▶ face sides ─┬─ lo-free ─▶ mesh (Algori
 | `engine/ho.rs` | ho conversion: patch names, orientation, checks, the interior, the HBG document |
 | `engine/structured.rs` | lo-str grids: linked counts, arc-length divisions, open and hanging edges (T-junction cuts kept, off) |
 | `engine/worker.rs` | The conversion worker: request, progress, result, staged artifacts read back |
-| `gui/` | `mod.rs` state and jobs, `panels.rs` window layout and the cut modes, `junction.rs` the pipe-junction and wall-window cut rules, `history.rs` undo and redo, `diagnostics.rs` the session log and saved diagnostics, `fonts.rs` the system fonts read when the window opens (no font is built in), `about.rs` the About window, `startup.rs` options, `smoke.rs` scripted checks |
+| `gui/` | `mod.rs` state and jobs, `panels/` the window layout (`mod.rs` toolbar and shared rows, `model.rs` the Model and Fast Mesh settings, `properties.rs`, `quality.rs` the checks panel, `viewport.rs`, `cuts.rs` the cut modes), `junction.rs` the pipe-junction and wall-window cut rules, `history.rs` undo and redo, `diagnostics.rs` the session log and saved diagnostics, `fonts.rs` the system fonts read when the window opens (no font is built in), `about.rs` the About window, `startup.rs` options, `smoke.rs` scripted checks |
 | `view/` | `viewport.rs`/`.wgsl` GPU drawing, camera and picking; `spline.rs` display sampling; `conversion.rs` GUI sessions and exports (span preview at any potential panel size, `publish_with`); `fast.rs` the display of a Fast Mesh body of panels; `mesh_file.rs` the geometry files the Mesh Viewer tab opens (HBG version 3, GDF low order and higher order with the spans of its SPL file, ASCII and binary STL; the elements in z = 0 as the interior surface; volumes and patch checks), also for a Fast Mesh body of patches (`Opened::hbg`) |
 
 `tests/`: integration tests through the library and the built executable; `tests/data/` the test
@@ -142,8 +142,10 @@ executable has no icon) and links the static SDK when the `static-gmsh` feature 
 
 ## 4. Tests
 
-Commands: [CONTRIBUTING](../../CONTRIBUTING.md#before-and-after-a-change). CI (`.github/workflows/ci.yml`, Windows)
-runs fmt, clippy and the plain `cargo test --locked`.
+Commands: [CONTRIBUTING](../../CONTRIBUTING.md#before-and-after-a-change). CI (Windows) runs fmt, clippy and the plain `cargo test --locked`
+(`.github/workflows/ci.yml`, `ci`) on every pull request, and the static build's clippy and every test
+(`conversions.yml`, `conversions`) when code, tests or the build change; the static SDK is cached by the hash of
+its build inputs.
 
 The plain run needs no SDK or display (the command line's refusals in `modes_cli.rs`, parts of `convert_cli.rs`,
 `mesh_files.rs` for Fast Mesh files, the unit tests in `src/`). Ignored tests run on the static build (`scripts/static_env.ps1`), whose
